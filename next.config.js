@@ -44,4 +44,17 @@ const withNamedLazyChunks = (nextConfig = {}) =>
 		}
 	})
 
-module.exports = withNamedLazyChunks({})
+module.exports = withNamedLazyChunks({
+	// Compile to Preact at build time for greater performance gains - unrelated to demonstration
+	webpack: (config, { dev, isServer }) => {
+		if (!dev && !isServer) {
+			Object.assign(config.resolve.alias, {
+				react: 'preact/compat',
+				'react-dom/test-utils': 'preact/test-utils',
+				'react-dom': 'preact/compat'
+			})
+		}
+
+		return config
+	}
+})
