@@ -45,16 +45,17 @@ const withNamedLazyChunks = (nextConfig = {}) =>
 	})
 
 module.exports = withNamedLazyChunks({
-	// Compile to Preact at build time for greater performance gains - unrelated to demonstration
-	webpack: (config, { dev, isServer }) => {
-		if (!dev && !isServer) {
+	// Compile to Preact at build time to demonstrate that this hack is viable when using Preact instead of React
+	// ... requires a state machine like Zustand to store server-side HTML during the hydratino phase, which prevents layout shift/flickering
+	// (see https://github.com/preactjs/preact/issues/2364#issuecomment-736956894)
+	webpack: (config, { isServer }) => {
+		if (!isServer) {
 			Object.assign(config.resolve.alias, {
 				react: 'preact/compat',
 				'react-dom/test-utils': 'preact/test-utils',
 				'react-dom': 'preact/compat'
 			})
 		}
-
 		return config
 	}
 })

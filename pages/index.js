@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
-import LazyHydrate from 'react-lazy-hydration'
 
+import LazyHydrate from '../components/LazyHydrate'
 import LoadingComponent from '../components/LoadingComponent'
 const LazyComponent = dynamic(() => import('../components/LazyComponent'), {
 	loading: () => <LoadingComponent id="lazy" />
