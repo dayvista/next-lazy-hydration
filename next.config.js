@@ -45,6 +45,8 @@ const withNamedLazyChunks = (nextConfig = {}) =>
 	})
 
 module.exports = withNamedLazyChunks({
+	images: { domains: ['www.businessinsider.in'] },
+
 	// Compile to Preact at build time to demonstrate that this hack is viable when using Preact instead of React
 	// ... requires a state machine like Zustand to store server-side HTML during the hydratino phase, which prevents layout shift/flickering
 	// (see https://github.com/preactjs/preact/issues/2364#issuecomment-736956894)
