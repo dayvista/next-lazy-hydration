@@ -13,20 +13,8 @@ function reducer() {
 }
 
 function LazyHydrate(props) {
-	const childRef = useRef(null)
-
-	// Always render on server
-	const [hydrated, hydrate] = useReducer(reducer, !isBrowser)
-
-	// Store the server-side HTML in state before it gets erased
-	// (only relevant when using Preact) - see https://github.com/preactjs/preact/issues/2364#issuecomment-736956894
-	const addToLazyComponents = useStore((state) => state.addToLazyComponents)
-	const initHydrate = () => {
-		addToLazyComponents(childRef?.current?.firstChild)
-		hydrate()
-	}
-
 	const {
+		id,
 		noWrapper,
 		ssrOnly,
 		whenIdle,
@@ -37,6 +25,19 @@ function LazyHydrate(props) {
 		didHydrate, // callback for hydration
 		...rest
 	} = props
+
+	const childRef = useRef(null)
+
+	// Always render on server
+	const [hydrated, hydrate] = useReducer(reducer, !isBrowser)
+
+	// Store the server-side HTML in state before it gets erased
+	// (only relevant when using Preact) - see https://github.com/preactjs/preact/issues/2364#issuecomment-736956894
+	const addToLazyComponents = useStore((state) => state.addToLazyComponents)
+	const initHydrate = () => {
+		addToLazyComponents(childRef?.current?.children?.[id])
+		hydrate()
+	}
 
 	if (isDev && !ssrOnly && !whenIdle && !whenVisible && !on.length && !promise) {
 		console.error(

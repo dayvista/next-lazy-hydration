@@ -29,7 +29,7 @@ const withNamedLazyChunks = (nextConfig = {}) =>
 			config.plugins.push(
 				mapModuleIds((id, module) => {
 					// Define file names of components that you want to control the hydration of here
-					if (id.includes('LazyComponent.js')) {
+					if (id.includes('LazyComponent.js') || id.includes('/scroll/LazyScroll')) {
 						return `lazy-${module.debugId}`
 					}
 					return false

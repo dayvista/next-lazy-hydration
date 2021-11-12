@@ -1,13 +1,20 @@
+html,
+body,
+#__next {
+	width: 100%;
+}
+
 body {
 	margin: 0;
 	font-family: sans-serif;
+	overflow-x: hidden;
 }
 
 .container {
 	color: white;
 	background: black;
 	text-align: center;
-	height: 100vh;
+	/* height: 100vh; */
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
