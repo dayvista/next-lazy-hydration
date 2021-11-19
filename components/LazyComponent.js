@@ -4,7 +4,7 @@ const LazyComponent = () => {
 	const [isHydrated, setIsHydrated] = useState(false)
 	useEffect(() => setIsHydrated(true), [])
 
-	// Basic timer to illustrate hydration state
+	// Basic timer to illustrate hydration status
 	const [seconds, setSeconds] = useState(0)
 	useEffect(() => {
 		const timer = setTimeout(() => {
