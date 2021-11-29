@@ -12,13 +12,6 @@ const Counter = dynamic(() => import('../components/lazy-components/Counter'), {
 		return <div dangerouslySetInnerHTML={{ __html: html }} />
 	}
 })
-const LazyScroll = dynamic(() => import('../components/lazy-components/LazyScroll'), {
-	loading: () => {
-		const html = typeof window !== 'undefined' && document.getElementById('scroll')?.outerHTML
-
-		return <div style={{ display: 'contents' }} dangerouslySetInnerHTML={{ __html: html }} />
-	}
-})
 
 // Preact way
 const CounterPreact = dynamic(() => import('../components/lazy-components/CounterPreact'), {

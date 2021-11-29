@@ -5,10 +5,10 @@ const Issues = () => {
 		<div style={{ marginRight: 'auto', marginLeft: '50px' }}>
 			<ul>
 				<li>
-					Does not work on route changes, because the HTML does not exist on page load. Causes
-					layout shift and components automatically hydrate. See{' '}
-					<Link>
-						<a>here</a>
+					Does not work on route changes because the HTML does not exist on page load. Causes layout
+					shift and can't control component hydration. See{' '}
+					<Link href="/route-change">
+						<a>this page</a>
 					</Link>
 					.
 				</li>

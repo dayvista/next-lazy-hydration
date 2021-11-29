@@ -50,11 +50,11 @@ function LazyHydrate(props) {
 	}
 
 	useIsomorphicLayoutEffect(() => {
-		// FIXME: hydrates on page route changes because dom HTML hasn't been built yet?
+		// FIXME: hydrates instantly on page route changes because SSR HTML isn't present on route changes
 
 		// No SSR Content
 		if (!childRef.current.hasChildNodes()) {
-			// initHydrate()
+			initHydrate()
 		}
 	}, [])
 
