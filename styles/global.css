@@ -17,6 +17,18 @@ div * + *,
 div * + * > * {
 	margin-top: 20px;
 }
+.container > div {
+	margin-bottom: 50px;
+}
+@media (min-width: 1280px) {
+	.container {
+		flex-direction: row;
+		align-items: flex-start;
+	}
+	.container > div {
+		margin-bottom: 0px;
+	}
+}
 
 button {
 	width: fit-content;
@@ -48,4 +60,8 @@ h1 {
 }
 h2 {
 	font-size: 20px;
+}
+
+li {
+	list-style: disc;
 }

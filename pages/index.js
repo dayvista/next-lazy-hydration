@@ -32,14 +32,12 @@ const Home = () => {
 	return (
 		<div>
 			<h1>Lazy loading/on-demand hydration demo</h1>
-			<p>
-				Bad news first:{' '}
-				<Link href="/issues">
-					<a>outstanding issues</a>
-				</Link>
-			</p>
 
-			<div style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
+			<Link href="/issues">
+				<a>issues with this approach</a>
+			</Link>
+
+			<div className="container">
 				<div>
 					<h2 style={{ textDecoration: 'underline' }}>React example</h2>
 					<div>
