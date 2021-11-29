@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const LazyComponent = () => {
+const Counter = () => {
 	const [isHydrated, setIsHydrated] = useState(false)
 	useEffect(() => setIsHydrated(true), [])
 
@@ -15,14 +15,14 @@ const LazyComponent = () => {
 	}, [seconds])
 
 	return (
-		<button className="lazy-button" id="lazy">
+		<button id="counter">
 			<p>
 				{isHydrated
 					? 'Hydrated successfully.'
-					: "Click to hydrate. There shouldn't be a flicker now!"}
+					: 'Click to hydrate. There should be no flicker if using React.'}
 			</p>
 			<p>
-				If JavaScript is enabled, the following number will increment every second:
+				Upon hydration, the following number will increment every second:
 				<br />
 				{seconds}
 			</p>
@@ -30,4 +30,4 @@ const LazyComponent = () => {
 	)
 }
 
-export default LazyComponent
+export default Counter

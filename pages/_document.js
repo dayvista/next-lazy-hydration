@@ -1,8 +1,10 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
+// Filter out chunks specified as 'lazy' in `next.config.js`
 class LazyHead extends Head {
 	getDynamicChunks(files) {
 		const dynamicScripts = super.getDynamicChunks(files)
+
 		try {
 			// get chunk manifest from loadable
 			const loadableManifest = __non_webpack_require__('../../react-loadable-manifest.json')
@@ -35,6 +37,7 @@ NextScript.getInlineScriptSource = (props) => {
 		const filteredDynamicModuleIds = props?.__NEXT_DATA__?.dynamicIds?.filter?.(
 			(moduleID) => !moduleID?.startsWith?.('lazy')
 		)
+
 		if (filteredDynamicModuleIds) {
 			// mutate dynamicIds from next data
 			props.__NEXT_DATA__.dynamicIds = filteredDynamicModuleIds
@@ -52,6 +55,7 @@ class MyDocument extends Document {
 	render() {
 		return (
 			<Html>
+				{/* Use the modified `<Head />` here */}
 				<LazyHead />
 				<body>
 					<Main />

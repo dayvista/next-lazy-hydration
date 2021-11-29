@@ -1,3 +1,4 @@
+// Modify the ID assigned to specific component chunks
 const mapModuleIds = (fn) => (compiler) => {
 	const { context } = compiler.options
 
@@ -23,13 +24,14 @@ const mapModuleIds = (fn) => (compiler) => {
 	})
 }
 
+// Add a `lazy` prefix to all chunks we want to lazy-load
 const withNamedLazyChunks = (nextConfig = {}) =>
 	Object.assign({}, nextConfig, {
 		webpack: (config, options) => {
 			config.plugins.push(
 				mapModuleIds((id, module) => {
-					// Define file names of components that you want to control the hydration of here
-					if (id.includes('LazyComponent.js') || id.includes('/scroll/LazyScroll')) {
+					// Add the file names/paths of any components you want to lazy hydrate here
+					if (id.includes('/components/lazy-components')) {
 						return `lazy-${module.debugId}`
 					}
 					return false
@@ -45,11 +47,14 @@ const withNamedLazyChunks = (nextConfig = {}) =>
 	})
 
 module.exports = withNamedLazyChunks({
+	// Support the random doggo image
 	images: { domains: ['www.businessinsider.in'] },
 
-	// Compile to Preact at build time to demonstrate that this hack is viable when using Preact instead of React
-	// ... requires a state machine like Zustand to store server-side HTML during the hydratino phase, which prevents layout shift/flickering
-	// (see https://github.com/preactjs/preact/issues/2364#issuecomment-736956894)
+	// COMMENT OUT LINES 55 - 65 TO DISABLE PREACT
+	// Compile to Preact to demonstrate lazy hydration in that framework vs. React.
+	// ===
+	// This requires a global state tool like Zustand to store server-side HTML during the hydration phase (prevents layout shift/flickering).
+	// (see https://github.com/preactjs/preact/issues/2364#issuecomment-736956894 for why this is required with Preact but not React)
 	webpack: (config, { isServer }) => {
 		if (!isServer) {
 			Object.assign(config.resolve.alias, {
@@ -58,6 +63,7 @@ module.exports = withNamedLazyChunks({
 				'react-dom': 'preact/compat'
 			})
 		}
+
 		return config
 	}
 })

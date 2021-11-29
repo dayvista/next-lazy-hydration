@@ -1,12 +1,11 @@
 import Image from 'next/image'
 
-const LazyScroll1 = () => {
+const LazyScroll = () => {
 	return (
 		<div
-			id="scroll1"
+			id="scroll"
 			style={{
 				width: '100%',
-				height: '50vh',
 				marginTop: '150vh'
 			}}>
 			<div style={{ width: '700px', height: '400px', position: 'relative' }}>
@@ -23,4 +22,4 @@ const LazyScroll1 = () => {
 	)
 }
 
-export default LazyScroll1
+export default LazyScroll

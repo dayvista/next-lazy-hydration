@@ -1,3 +1,6 @@
+// Note: the majority of this code has been copied from https://github.com/hadeeb/react-lazy-hydration...
+//       credit to hadeeb and the other contributors
+
 import { useReducer, useRef, useEffect, useLayoutEffect } from 'react'
 
 import useStore from '../lib/store'
@@ -35,7 +38,7 @@ function LazyHydrate(props) {
 	// (only relevant when using Preact) - see https://github.com/preactjs/preact/issues/2364#issuecomment-736956894
 	const addToLazyComponents = useStore((state) => state.addToLazyComponents)
 	const initHydrate = () => {
-		addToLazyComponents(childRef?.current?.children?.[id])
+		id && addToLazyComponents(childRef?.current?.children?.[id])
 		hydrate()
 	}
 
@@ -47,9 +50,11 @@ function LazyHydrate(props) {
 	}
 
 	useIsomorphicLayoutEffect(() => {
+		// FIXME: hydrates on page route changes because dom HTML hasn't been built yet?
+
 		// No SSR Content
 		if (!childRef.current.hasChildNodes()) {
-			initHydrate()
+			// initHydrate()
 		}
 	}, [])
 
