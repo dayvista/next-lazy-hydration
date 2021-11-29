@@ -48,22 +48,23 @@ const withNamedLazyChunks = (nextConfig = {}) =>
 
 module.exports = withNamedLazyChunks({
 	// Support the random doggo image
-	images: { domains: ['www.businessinsider.in'] },
+	images: { domains: ['www.businessinsider.in'] }
 
-	// COMMENT OUT LINES 55 - 65 TO DISABLE PREACT
-	// Compile to Preact to demonstrate lazy hydration in that framework vs. React.
-	// ===
+	// Compile to Preact to demonstrate lazy hydration with Preact vs. React.
 	// This requires a global state tool like Zustand to store server-side HTML during the hydration phase (prevents layout shift/flickering).
-	// (see https://github.com/preactjs/preact/issues/2364#issuecomment-736956894 for why this is required with Preact but not React)
-	webpack: (config, { isServer }) => {
-		if (!isServer) {
-			Object.assign(config.resolve.alias, {
-				react: 'preact/compat',
-				'react-dom/test-utils': 'preact/test-utils',
-				'react-dom': 'preact/compat'
-			})
-		}
+	// See https://github.com/preactjs/preact/issues/2364#issuecomment-736956894 for info on why this is required with Preact but not React.
+	//
+	// =====================================
+	//
+	// webpack: (config, { isServer }) => {
+	// 	if (!isServer) {
+	// 		Object.assign(config.resolve.alias, {
+	// 			react: 'preact/compat',
+	// 			'react-dom/test-utils': 'preact/test-utils',
+	// 			'react-dom': 'preact/compat'
+	// 		})
+	// 	}
 
-		return config
-	}
+	// 	return config
+	// }
 })

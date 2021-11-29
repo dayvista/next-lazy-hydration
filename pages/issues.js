@@ -13,7 +13,7 @@ const Issues = () => {
 					.
 				</li>
 				<li>Seems to disable HMR on the dev server in some instances.</li>
-				<li>Wraps every lazy-hydrated component in a `div` with the style `display: contents`.</li>
+				<li>Wraps every lazy-hydrated component in a `div` with `display: contents`.</li>
 			</ul>
 		</div>
 	)
