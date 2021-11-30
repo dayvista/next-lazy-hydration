@@ -8,7 +8,7 @@ const LazyScrollPreact = () => {
 				width: '100%',
 				marginTop: '150vh'
 			}}>
-			<div style={{ width: '700px', height: '400px', position: 'relative' }}>
+			<div className="img-wrapper">
 				<Image
 					src="https://www.businessinsider.in/photo/81878541/5-reasons-why-your-dog-is-constantly-scratching-themself.jpg?imgsize=180883"
 					layout="fill"

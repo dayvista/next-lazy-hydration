@@ -65,3 +65,15 @@ h2 {
 li {
 	list-style: disc;
 }
+
+.img-wrapper {
+	position: relative;
+	height: 200px;
+	width: 360px;
+}
+@media (min-width: 640px) {
+	.img-wrapper {
+		height: 360px;
+		width: 640px;
+	}
+}
