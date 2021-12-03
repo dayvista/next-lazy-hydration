@@ -77,3 +77,21 @@ li {
 		width: 640px;
 	}
 }
+
+@media (max-width: 639px) {
+	p {
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+	}
+	button {
+		margin-left: 1.5rem;
+		margin-right: 1.5rem;
+	}
+	h1,
+	h2,
+	h3 {
+		padding-left: 1rem;
+		padding-right: 1rem;
+		text-align: center;
+	}
+}
